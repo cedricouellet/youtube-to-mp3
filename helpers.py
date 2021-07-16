@@ -13,20 +13,20 @@ from pytube import YouTube
 YOUTUBE_URL = 'https://www.youtube.com'
 
 
-def download_mp3(video: YouTube, config: Config) -> None:
+def download_mp3(video: YouTube, config: Config) -> str:
     """
     Downloads the audio of a YouTube video in MP3 format.
 
     :param video: The video from which to download the audio
     :param config: The configuration settings for the download
-    :return:
+    :return: The path of the newly created mp4 file
     """
     # returns the mp4 only containing audio
     stream = video.streams.get_lowest_resolution()
     stream.download(output_path=config.out_dir, timeout=config.timeout, max_retries=config.max_retries,
                     skip_existing=True)
     mp4_path = config.out_dir + '/' + stream.default_filename
-    convert_mp4_to_mp3(mp4_path)
+    return mp4_path
 
 
 def convert_mp4_to_mp3(path: str, delete_after: bool = True) -> str:

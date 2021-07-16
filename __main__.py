@@ -9,7 +9,7 @@ import colorama
 from colorama import Fore
 from typing import NoReturn
 from config import Config
-from helpers import download_mp3, is_valid_playlist_url, is_valid_video_url
+from helpers import convert_mp4_to_mp3, download_mp3, is_valid_playlist_url, is_valid_video_url
 from pytube import YouTube, Playlist
 
 
@@ -18,19 +18,38 @@ def main() -> None:
     args = parse_args()
     url = args.url
 
-    config = Config(out_dir=args.out, timeout=args.timeout, max_retries=args.retry)
-
-    if not os.path.exists(config.out_dir):
-        os.mkdir(config.out_dir)
+    config = Config(out_dir=args.out, timeout=args.timeout,
+                    max_retries=args.retry)
 
     try:
+        if not os.path.exists(config.out_dir):
+            os.mkdir(config.out_dir)
+            log_info('Output directory created')
+
         if is_valid_video_url(url):
+            log_info('Single YouTube video Detected. Initializing...')
+
             video = YouTube(url)
-            download_mp3(video, config)
+            path = download_mp3(video, config)
+            
+            log_info('Converting video to MP3 File...')
+            
+            convert_mp4_to_mp3(path)
+            
+            log_info('Conversion complete...')
         elif is_valid_playlist_url(url):
+            log_info('YouTube playlist Detected. Initializing...')
+            
             playlist = Playlist(url)
             for video in playlist.videos:
-                download_mp3(video, config)
+                path = download_mp3(video, config)
+
+                log_info('Converting video to MP3 File...')
+                
+                convert_mp4_to_mp3(path)
+                
+                log_info('Conversion complete. Moving on to next...')
+            log_info(f'All videos converted. Enjoy your new MP3 files in {config.out_dir}!')
         else:
             raise ValueError('The given url is not a valid YouTube link')
     except BaseException as ex:
