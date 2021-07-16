@@ -48,7 +48,6 @@ def convert_mp4_to_mp3(path: str, delete_after: bool = True) -> str:
 
     if delete_after:
         os.remove(path)
-        print('MP4')
     return mp3_path
 
 
