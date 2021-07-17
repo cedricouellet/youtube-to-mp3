@@ -1,7 +1,7 @@
 # youtube-to-mp3
 
 
-A Python program allowing users to download YouTube videos or playlists as MP3 audio files from a url.
+Download YouTube videos or playlists as MP3 audio files from a url.
 
 > Command Line Usage
 
