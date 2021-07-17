@@ -1,4 +1,4 @@
-"""yt2mp3.helpers: Helper functions and classes for the main yt2mp3 program."""
+"""yturl2mp3.helpers: Helper functions and classes for the main yturl2mp3 program."""
 
 
 from .config import Config

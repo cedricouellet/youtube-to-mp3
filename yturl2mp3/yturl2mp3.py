@@ -1,6 +1,6 @@
-"""ytmp3.yt2mp3: provides entry point main()."""
+"""ytmp3.yturl2mp3: provides entry point main()."""
 
-__version__ = "0.4.0"
+__version__ = "0.4.1"
 
 import sys
 import os
@@ -11,6 +11,8 @@ from typing import NoReturn
 from .config import Config
 from .helpers import convert_mp4_to_mp3, download_mp3, is_valid_playlist_url, is_valid_video_url
 from pytube import YouTube, Playlist
+
+colorama.init()
 
 
 def main() -> None:
@@ -99,8 +101,3 @@ def parse_args() -> argparse.Namespace:
                         help="Number of retries on failed download")
 
     return parser.parse_args()
-
-
-if __name__ == '__main__':
-    colorama.init()
-    main()

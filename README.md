@@ -6,7 +6,7 @@ Download YouTube videos or playlists as MP3 audio files from a url.
 > Command Line Usage
 
 ```
-usage: youtube-to-mp3 [-h] [-o DIR] [-t S] [-r N] URL
+usage: yturl2mp3 [-h] [-o DIR] [-t S] [-r N] URL
 
 Youtube To MP3 Download Tool
 

@@ -1,4 +1,4 @@
-"""yt2mp3.config: Configuration settings object"""
+"""yturl2mp3.config: Configuration settings object"""
 
 
 class Config:
