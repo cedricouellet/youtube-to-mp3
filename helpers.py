@@ -61,7 +61,7 @@ def is_valid_video_url(url: str) -> bool:
     :param url: The url pointing to the YouTube video
     :return: True if the url is valid, otherwise false
     """
-    return None is not re.match('(https://www\\.youtube)\\.(.{2,})/watch\\?v=([0-9|Z-a]+)', url)
+    return None is not re.match('https:\/\/www\.youtube\.[a-z]{2,}\/watch\?v=([A-Za-z0-9-_\&]+)', url)
 
 
 def is_valid_playlist_url(url: str) -> bool:
@@ -74,4 +74,4 @@ def is_valid_playlist_url(url: str) -> bool:
     :param url: The url to validate
     :return: True if the url is valid, otherwise false.
     """
-    return None is not re.match('(https://www\\.youtube)\\.(.{2,})/playlist\\?list=([0-9|Z-a]+)', url)
+    return None is not re.match('https:\/\/www\.youtube\.[a-z]{2,}\/playlist\?list=([A-Za-z0-9-_\&]+)', url)
